@@ -14,33 +14,37 @@ type DownloadPdfProps = {
 
 const DownloadPdf = ({ formData, setErrors }: DownloadPdfProps) => {
     const downloadPDF = async () => {
-        const result = formDataSchema.safeParse(formData);
-        if (!result.success) {
-            const fieldErrors: Partial<Record<keyof FormData, string>> = {};
-            result.error.issues.forEach((issue) => {
-                const field = issue.path[0] as keyof FormData;
-                fieldErrors[field] = issue.message;
-            });
-            if (setErrors) {
-                setErrors(fieldErrors);
+        try {
+            const result = formDataSchema.safeParse(formData);
+            if (!result.success) {
+                const fieldErrors: Partial<Record<keyof FormData, string>> = {};
+                result.error.issues.forEach((issue) => {
+                    const field = issue.path[0] as keyof FormData;
+                    fieldErrors[field] = issue.message;
+                });
+                if (setErrors) {
+                    setErrors(fieldErrors);
+                }
+                return;
             }
-            return;
-        }
-        if (setErrors) {
-            setErrors({});
-        }
-        const doc = <PdfTemplate formData={formData} />;
+            if (setErrors) {
+                setErrors({});
+            }
+            const doc = <PdfTemplate formData={formData} />;
 
-        const asPdf = pdf(doc);
-        const blob = await asPdf.toBlob();
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'example.pdf';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
+            const asPdf = pdf(doc);
+            const blob = await asPdf.toBlob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'example.pdf';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+        }
     };
     return (
         <button onClick={downloadPDF} className="btn">
