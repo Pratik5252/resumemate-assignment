@@ -20,6 +20,7 @@ const Form = () => {
     const [errors, setErrors] = useState<
         Partial<Record<keyof FormData, string>>
     >({});
+    const [isloading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const onChange = (
@@ -37,7 +38,7 @@ const Form = () => {
         e.preventDefault();
     };
 
-    const viewPDF = () => {
+    const viewPDF = async () => {
         const result = formDataSchema.safeParse(formData);
         if (!result.success) {
             const fieldErrors: Partial<Record<keyof FormData, string>> = {};
@@ -45,12 +46,19 @@ const Form = () => {
                 const field = issue.path[0] as keyof FormData;
                 fieldErrors[field] = issue.message;
             });
+
             setErrors(fieldErrors);
             console.log(errors);
             return;
         }
-        setErrors({});
-        router.push('/viewpdf');
+        try {
+            setIsLoading(true);
+            setErrors({});
+            router.push('/viewpdf');
+        } catch (err) {
+            console.log(err);
+        }
+        setIsLoading(false);
     };
 
     return (
@@ -131,7 +139,7 @@ const Form = () => {
                         </div>
                     </div>
                     {errors.phoneNumber && (
-                        <p className="text-red-500 text-sm">
+                        <p className="text-red-500 text-sm ">
                             {errors.phoneNumber}
                         </p>
                     )}
@@ -158,7 +166,7 @@ const Form = () => {
                     <div className={`textarea-field`}>
                         <label
                             htmlFor="description"
-                            className="flex justify-center items-center gap-2 text-sm py-1"
+                            className="flex justify-center items-center gap-4 text-sm py-1"
                         >
                             <FileText size={16} />
                             Description
@@ -174,7 +182,7 @@ const Form = () => {
                 </div>
                 <div className="w-full flex gap-4">
                     <button onClick={viewPDF} className="btn">
-                        View PDF
+                        {isloading ? '...' : 'View PDF'}
                     </button>
                     <DownloadPdf formData={formData} setErrors={setErrors} />
                 </div>
