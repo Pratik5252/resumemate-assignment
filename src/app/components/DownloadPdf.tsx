@@ -37,7 +37,7 @@ const DownloadPdf = ({ formData, setErrors }: DownloadPdfProps) => {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'example.pdf';
+            link.download = 'userdata.pdf';
             document.body.appendChild(link);
             link.click();
             link.remove();
