@@ -1,26 +1,49 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+    input {
+        @apply w-full outline-none placeholder:text-sm placeholder:font-light;
+    }
+    textarea {
+        @apply w-full min-h-[100px] outline-none placeholder:text-sm placeholder:font-light;
+    }
+    .input-field {
+        @apply bg-white flex justify-start items-center gap-4 border border-gray-300 rounded-xl px-3 py-1 shadow-sm focus-within:ring-3 focus-within:ring-gray-200 hover:ring-3 hover:ring-gray-100 w-full;
+    }
+    .textarea-field {
+        @apply bg-white flex flex-col justify-start items-start gap-1 border border-gray-300 rounded-xl px-3 py-1 shadow-sm focus-within:ring-3 focus-within:ring-gray-200 hover:ring-3 hover:ring-gray-200 w-full h-fit;
+    }
+
+    .input-error {
+        @apply border-red-500 focus-within:ring-red-200;
+    }
+
+    .btn {
+        @apply w-full bg-gradient-to-l from-emerald-500 to-emerald-700  px-4 py-2 rounded-md text-white text-sm font-bold flex justify-center items-center gap-2 cursor-pointer;
+    }
 }
