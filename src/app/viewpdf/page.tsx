@@ -11,12 +11,12 @@ const Page = () => {
     const { formData }: { formData: FormData } = useFormData();
     const router = useRouter();
     return (
-        <div className="relative w-full h-screen flex flex-col gap-4 items-center justify-start">
+        <div className="bg-white relative w-full h-screen flex flex-col gap-4 items-center justify-start">
             <div
                 className="absolute top-4 left-4 cursor-pointer hover:text-stone-700 p-1"
                 onClick={() => router.back()}
             >
-                <ChevronLeft size={36} strokeWidth={2} />
+                <ChevronLeft size={36} strokeWidth={2} color='black'/>
             </div>
             <div className="w-[80vw] md:w-[70vw] lg:w-[50vw] flex flex-col gap-4 border px-6 py-10 shadow-lg mt-36">
                 {Object.entries(formData).map(([key, value]) => (
@@ -24,7 +24,7 @@ const Page = () => {
                         key={key}
                         className="grid grid-cols-[150px_1fr] gap-4 items-baseline"
                     >
-                        <h2 className="text-base font-semibold capitalize">
+                        <h2 className="text-black text-base font-semibold capitalize">
                             {key.replace(/([A-Z])/g, ' $1')}:
                         </h2>
                         <p className="text-sm text-stone-600 font-medium w-[80%]">

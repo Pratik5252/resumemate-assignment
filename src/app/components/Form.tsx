@@ -54,9 +54,9 @@ const Form = () => {
     };
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center justify-center">
+        <div className="bg-white w-screen h-screen flex flex-col items-center justify-center">
             <form onSubmit={onSubmit} className="flex flex-col gap-4">
-                <h2 className="text-center font-bold text-xl">
+                <h2 className="text-center font-bold text-xl text-black">
                     Add your Details
                 </h2>
                 <div>
@@ -169,7 +169,6 @@ const Form = () => {
                             value={formData.description}
                             placeholder="Enter description"
                             onChange={(e) => onChange(e)}
-                            
                         />
                     </div>
                 </div>
