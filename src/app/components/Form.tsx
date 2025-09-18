@@ -75,9 +75,8 @@ const Form = () => {
                                 type="text"
                                 name="name"
                                 value={formData.name}
-                                placeholder="Enter name"
+                                placeholder="eg. Jame Smith"
                                 onChange={(e) => onChange(e)}
-                                className="w-full outline-none"
                             />
                         </div>
                     </div>
@@ -101,9 +100,8 @@ const Form = () => {
                                 type="email"
                                 name="email"
                                 value={formData.email}
-                                placeholder="Enter email"
+                                placeholder="eg. jame@example.com"
                                 onChange={(e) => onChange(e)}
-                                className="w-full outline-none"
                             />
                         </div>
                     </div>
@@ -127,9 +125,8 @@ const Form = () => {
                                 type="tel"
                                 name="phoneNumber"
                                 value={formData.phoneNumber}
-                                placeholder="Enter phone number"
+                                placeholder="eg. +1234567890"
                                 onChange={(e) => onChange(e)}
-                                className="w-full outline-none"
                             />
                         </div>
                     </div>
@@ -153,7 +150,6 @@ const Form = () => {
                                 value={formData.position}
                                 placeholder="Enter position"
                                 onChange={(e) => onChange(e)}
-                                className="w-full outline-none"
                             />
                         </div>
                     </div>
@@ -173,7 +169,7 @@ const Form = () => {
                             value={formData.description}
                             placeholder="Enter description"
                             onChange={(e) => onChange(e)}
-                            className="w-full min-h-[100px] outline-none"
+                            
                         />
                     </div>
                 </div>
