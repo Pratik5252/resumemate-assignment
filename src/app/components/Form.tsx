@@ -132,6 +132,7 @@ const Form = () => {
                                 id="phoneNumber"
                                 type="tel"
                                 name="phoneNumber"
+                                inputMode='numeric'
                                 value={formData.phoneNumber}
                                 placeholder="eg. +1234567890"
                                 onChange={(e) => onChange(e)}

@@ -8,7 +8,8 @@ const formDataSchema = z.object({
     email: z.email('Invalid email address'),
     phoneNumber: z
         .string()
-        .min(10, 'Phone number must be at least 10 digits long'),
+        .min(10, 'Phone number must be at least 10 digits long')
+        .max(15, 'Invalid phone number'),
     position: z.string('Position is required'),
     description: z.string('Description is required'),
 });
